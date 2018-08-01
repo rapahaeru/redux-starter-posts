@@ -31,8 +31,8 @@ class PostNew extends Component {
                     component={ this.renderField }
                 />
                 <Field
-                    label="Tags"
-                    name="tags"
+                    label="Categories"
+                    name="cateogories"
                     component={ this.renderField }
                 />
                 <Field
@@ -45,6 +45,24 @@ class PostNew extends Component {
     };
 }
 
+// essa funcao é chamada automaticamente quando o form é submitado
+function validate(values) {
+    // console.log(values) --> { title: 'dsgfsdg', categories: 'ddddd'. content: 'xcvcxvxc' }
+    const errors = {};
+
+    //valida os inputs do 'values'
+    if (!values.title) errors.title = "Digite um titulo";
+    if (!values.categories) errors.categories = "Digite uma categoria";
+    if (!values.content) errors.content = "Digite um conteúdo";
+
+    //se errors for vazio, form pode ser submitado
+    return errors;
+
+    // se o retorno do objeto for vazio, o redux-form assume que a validação passou
+}
+
+
 export default reduxForm({
+    validate: validate,
     form: 'PostNewForm'
 })(PostNew);
