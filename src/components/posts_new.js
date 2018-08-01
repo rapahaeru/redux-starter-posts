@@ -18,13 +18,22 @@ class PostNew extends Component {
                     type="text"
                     {...field.input}
                 />
+                {field.meta.error}
             </div>
         );
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render() {
+        const { handleSubmit } = this.props;
+
         return(
-            <form>
+            // Ao submitar o formulario, o handleSubmit irá aguardar o ok da validação para 
+            // em seguida chamar o método onSubmit que criamos
+            <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
                 <Field
                     label="Title"
                     name="title"
@@ -32,7 +41,7 @@ class PostNew extends Component {
                 />
                 <Field
                     label="Categories"
-                    name="cateogories"
+                    name="categories"
                     component={ this.renderField }
                 />
                 <Field
@@ -40,6 +49,7 @@ class PostNew extends Component {
                     name="content"
                     component={ this.renderField }
                 />
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     };
