@@ -18,7 +18,8 @@ class PostNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                {field.meta.error}
+                {/* os tipos de validacao sao: pristine, touched, invalid */}
+                { (field.meta.touched) ? field.meta.error : ''}
             </div>
         );
     }
