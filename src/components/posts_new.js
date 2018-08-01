@@ -7,8 +7,10 @@ class PostNew extends Component {
     // onde é chamado. para podermos ter os controles necessários
     // dos elementos do form
     renderField(field) {
+
+        const className = `form-group ${(field.meta.touched && field.meta.error) ? 'has-danger' : ''}`;
         return(
-            <div className="form-group">
+            <div className={ className }>
                 <label>{ field.label }</label>
                 {/* // onChange, onBlur , Onclick
                 <input onFocus={field.input.onFocus} />
@@ -19,7 +21,9 @@ class PostNew extends Component {
                     {...field.input}
                 />
                 {/* os tipos de validacao sao: pristine, touched, invalid */}
-                { (field.meta.touched) ? field.meta.error : ''}
+                <div className="text-help">
+                    { (field.meta.touched) ? field.meta.error : ''}
+                </div>
             </div>
         );
     }
