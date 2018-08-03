@@ -1,9 +1,14 @@
 import _ from 'lodash';
-import { FETCH_POSTS, FETCH_POST } from '../actions/index';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions/index';
 
 export default function(state = {}, action) {
 
     switch(action.type) {
+        case DELETE_POST:
+            // .omit verifica se o estado tem esse ID especifico (que está sendo retornado pelo payload)
+            // caso tenha, ele é omitido, retirado da lista do estado
+            // mas ele não mexe no estado atual, ele apenas gera um novo sem esse ID em particular
+            return _.omit(state, action.payload);
         case FETCH_POST:
             const post = action.payload.data;
             // const newState = { ...state };
