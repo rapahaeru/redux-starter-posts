@@ -11,7 +11,7 @@ class PostNew extends Component {
     // dos elementos do form
     renderField(field) {
 
-        const className = `form-group ${(field.meta.touched && field.meta.error) ? 'has-danger' : ''}`;
+        const className = `form-group ${ (field.meta.touched && field.meta.error) ? 'has-danger' : '' }`;
         return(
             <div className={ className }>
                 <label>{ field.label }</label>
